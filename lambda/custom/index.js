@@ -9,7 +9,7 @@ const LaunchRequest = {
     return handlerInput.requestEnvelope.session.new || handlerInput.requestEnvelope.request.type === 'LaunchRequest';
   },
   async handle(handlerInput) {
-    const { attributesManager, responseBuilder } = handlerInput;
+      const { attributesManager, responseBuilder } = handlerInput;
 
     const attributes = await attributesManager.getPersistentAttributes() || {};
     if (Object.keys(attributes).length === 0) {
@@ -81,6 +81,7 @@ const YesIntent = {
 
     const sessionAttributes = attributesManager.getSessionAttributes();
     sessionAttributes.guessNumber = Math.floor(Math.random() * 100);
+
 
     // For testing purposes, force a number to be picked if the UNIT_TEST environment variable is set
     if (process.env.UNIT_TEST) {
@@ -169,7 +170,9 @@ const ErrorHandler = {
     return true;
   },
   handle(handlerInput, error) {
-    console.log(`Error handled: ${error.message}`);
+      throw new Error("An error occurred");
+
+      console.log(`Error handled: ${error.message}`);
 
     return handlerInput.responseBuilder
       .speak('Sorry, I can\'t understand the command. Please say again.')
