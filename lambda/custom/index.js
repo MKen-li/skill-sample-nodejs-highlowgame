@@ -9,7 +9,7 @@ const LaunchRequest = {
     return handlerInput.requestEnvelope.session.new || handlerInput.requestEnvelope.request.type === 'LaunchRequest';
   },
   async handle(handlerInput) {
-      const { attributesManager, responseBuilder } = handlerInput;
+    const { attributesManager, responseBuilder } = handlerInput;
 
     const attributes = await attributesManager.getPersistentAttributes() || {};
     if (Object.keys(attributes).length === 0) {
